@@ -13,8 +13,11 @@
     }
     public function conn(){
         try {
-        
-        $this -> connect =  new PDO("mysql:host={$this -> host};dbname={$this -> dbName}", $this -> user, $this -> pass);
+        $hostname = $this -> host;
+        $dbNamePdo = $this -> dbName;
+        $dbUserName = $this -> user;
+        $passDb = $this -> pass;
+        $this -> connect =  new PDO("mysql:host={$hostname};dbname={$dbNamePdo}",$dbUserName , $passDb );
          
         } catch (exception $e){
             echo $e;
