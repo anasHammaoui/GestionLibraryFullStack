@@ -2,7 +2,7 @@
   include "../model/database.php";
   include "../controller/users.php";
   $users = null;
- if (isset($_POST["login"])){
+ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $db = new DataBase("localhost","library","root","");
   $db -> conn();
   $connect = $db -> setConn();
@@ -51,7 +51,7 @@
             />
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-            <form class="w-full" action="login.php" method="POST">
+            <form class="w-full" action="<?php htmlspecialchars("login.php")?>" method="POST">
               <h1
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
               >
