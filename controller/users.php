@@ -1,4 +1,5 @@
 <?php
+session_start();
     class Users {
         protected $email;
         protected $password;

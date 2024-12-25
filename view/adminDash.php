@@ -1,9 +1,12 @@
+<?php
+  include "../controller/admin.php";
+?>
 <!DOCTYPE html>
-<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<html  x-data="data()" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Windmill Dashboard</title>
+    <title>Ebook | AdminPage</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -389,7 +392,7 @@
       <div class="flex flex-col flex-1 w-full">
         <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
-            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+            class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >
             <!-- Mobile hamburger -->
             <button
@@ -410,33 +413,7 @@
                 ></path>
               </svg>
             </button>
-            <!-- Search input -->
-            <div class="flex justify-center flex-1 lg:mr-32">
-              <div
-                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
-              >
-                <div class="absolute inset-y-0 flex items-center pl-2">
-                  <svg
-                    class="w-4 h-4"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-                  type="text"
-                  placeholder="Search for projects"
-                  aria-label="Search"
-                />
-              </div>
-            </div>
+          
             <ul class="flex items-center flex-shrink-0 space-x-6">
              
               <!-- Notifications menu -->
@@ -684,71 +661,133 @@
               </div>
             </div>
 
-            <!-- New Table -->
+            <!-- users -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
+              <table class="w-full whitespace-no-wrap">
                   <thead>
-                 
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">User</th>
+                      <th class="px-4 py-3">Id</th>
+                      <th class="px-4 py-3">Role</th>
+                      <th class="px-4 py-3">Email</th>
+                      <th class="px-4 py-3">Registred at</th>
+                      <th class="px-4 py-3">Actions</th>
+                    </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3">
-                        <div class="flex items-center text-sm">
-                          <!-- Avatar with inset shadow -->
-                          <div
-                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                          >
-                            <img
-                              class="object-cover w-full h-full rounded-full"
-                              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                              alt=""
-                              loading="lazy"
-                            />
-                            <div
-                              class="absolute inset-0 rounded-full shadow-inner"
-                              aria-hidden="true"
-                            ></div>
-                          </div>
-                          <div>
-                            <p class="font-semibold">Hans Burger</p>
-                            <p class="text-xs text-gray-600 dark:text-gray-400">
-                              10x Developer
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
-                      <td class="px-4 py-3 text-xs">
-                        <span
-                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                  
+                  <tr class="text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center text-sm">
+                        <!-- Avatar with inset shadow -->
+                        <div
+                          class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
                         >
-                          Approved
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
-                    </tr>
+                          <img
+                            class="object-cover w-full h-full rounded-full"
+                            src="img/profil.png"
+                            alt=""
+                            loading="lazy"
+                          />
+                          <div
+                            class="absolute inset-0 rounded-full shadow-inner"
+                            aria-hidden="true"
+                          ></div>
+                        </div>
+                        <div>
+                          <p class="font-semibold">Ahmed</p>
+                          <p class="text-xs text-gray-600 dark:text-gray-400">
+                            Admin
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                      1
+                    </td>
+                    <td class="px-4 py-3 text-xs">
+                      <span
+                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                      >
+                        Admin
+                      </span>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                      contact@gmail.com
+                    </td>
+                    <td>
+                    6/10/2020
+                    </td>
+                    <td class="px-4 py-3">
+                      <div class="flex items-center space-x-4 text-sm">
+                        <!-- edit book -->
+                         
+                        <!-- Modal toggle -->
+                       
+                        <button
+                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                          aria-label="Edit"
+                          data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
+                        >
+                          <svg
+                            class="w-5 h-5"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                            ></path>
+                          </svg>
+                        </button>
+                        
 
-                   
+                        <!-- Main modal -->
+                        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
+                                  <div class="text-center font-bold py-4">Edit Roles</div>
+                                    <!-- Modal header -->
+                                    <form class="space-y-4 edit-project" action="utilisateur.php" method="POST">
+                                    <div class="flex column gap-4">
+                              <select id="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="role">
+                               <option value="">admin</option>
+                               <option value="">user</option>
+                              </select>
+                                          </div>
+                                          <input type="text" name="projectId" class="hidden putId">
+                                      <input type="submit" value="Edit Project" name="editProject" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
 
-                   
-
-                
-
-                  
-
-                   
-
-                   
-
-
-                  
+                        <button
+                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                          aria-label="Delete"
+                        >
+                          <svg
+                            class="w-5 h-5"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
@@ -760,5 +799,6 @@
         </main>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
 </html>
