@@ -1,13 +1,5 @@
 <?php
-  include "../model/database.php";
-  include "../controller/users.php";
-  $users = null;
- if ($_SERVER["REQUEST_METHOD"] == "POST"){
-  $db = new DataBase("localhost","library","root","");
-  $db -> conn();
-  $connect = $db -> setConn();
-  $users = new Users($connect, $_POST["email"],$_POST["password"]);
- }
+  include "../controller/login.php"
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +19,7 @@
     <!-- show error message after form is submeted and it's not good -->
   <?php
    if ($users){ ?> 
-   <div class="bg-rose-500 py-2 text-center font-bold text-lg text-white"><?= $users->login(); ?></div>
+   <div class="bg-rose-500 py-2 text-center font-bold text-lg text-white"><?= $users->login($connect, $_POST["email"],$_POST["password"]); ?></div>
  <?php }?>
   
 

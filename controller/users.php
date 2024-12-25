@@ -3,12 +3,20 @@
         protected $email;
         protected $password;
         protected $db;
-       public function __construct($db,$email, $pass){
-        $this -> email = $email;
-        $this -> password = $pass;
+        // login function
+       public function login($db,$email, $pass){
+         //    VALIDATE data
+    function validate($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+        // give data
+        $this -> email = validate($email);
+        $this -> password = validate($pass);
         $this -> db = $db;
-       }
-       public function login(){
+        // start login
         $email = $this -> email;
         $checkEmail = $this -> db -> prepare("SELECT email, password, role,id FROM users WHERE email = :email");
        $checkEmail -> bindParam(":email",$email);
@@ -35,6 +43,8 @@
        } else {
         echo "invalid email";
        }
+   
+
        }
     }
 ?>
