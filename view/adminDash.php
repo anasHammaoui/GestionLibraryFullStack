@@ -83,7 +83,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="booksAdmin.html"
+                href="booksAdmin.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -518,7 +518,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="loginPage.php"
                       >
                         <svg
                           class="w-4 h-4 mr-3"

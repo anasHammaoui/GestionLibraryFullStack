@@ -1,3 +1,7 @@
+<?php
+include "../controller/CrudBooks.php";
+?>
+
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()"  lang="en">
   <head>
@@ -36,7 +40,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="adminDash.html"
+                href="adminDash.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -519,7 +523,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="loginPage.php"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -570,8 +574,10 @@
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  
-                  <tr class="text-gray-700 dark:text-gray-400">
+                  <!-- show books with php -->
+                  <?php
+                    for ($i = 0; $i < count($showBooks); $i++){ ?>
+                     <tr class="text-gray-700 dark:text-gray-400">
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
                         <!-- Avatar with inset shadow -->
@@ -580,8 +586,8 @@
                         >
                           <img
                             class="object-cover w-full h-full rounded-full"
-                            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
-                            alt=""
+                            src="<?= $showBooks[$i]["cover_image"] ?>"
+                            alt="<?= $showBooks[$i]["title"] ?>"
                             loading="lazy"
                           />
                           <div
@@ -590,25 +596,25 @@
                           ></div>
                         </div>
                         <div>
-                          <p class="font-semibold">Cashvertising</p>
+                          <p class="font-semibold"><?= $showBooks[$i]["title"] ?></p>
                           <p class="text-xs text-gray-600 dark:text-gray-400">
-                            Buisiness
+                          <?= $showBooks[$i]["category_id"] ?>
                           </p>
                         </div>
                       </div>
                     </td>
                     <td class="px-4 py-3 text-sm">
-                      John Doe
+                    <?= $showBooks[$i]["author"] ?>
                     </td>
                     <td class="px-4 py-3 text-xs">
                       <span
                         class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                       >
-                        Borrowed
+                      <?= $showBooks[$i]["status"] ?>
                       </span>
                     </td>
                     <td class="px-4 py-3 text-sm">
-                      6/10/2020
+                    <?= $showBooks[$i]["created_at"] ?>
                     </td>
                     <td class="px-4 py-3">
                       <div class="flex items-center space-x-4 text-sm">
@@ -619,7 +625,7 @@
                         <button
                           class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                           aria-label="Edit"
-                          data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
+                          data-modal-target="<?= $showBooks[$i]["title"] ?>" data-modal-toggle="<?= $showBooks[$i]["title"] ?>" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
                         >
                           <svg
                             class="w-5 h-5"
@@ -635,29 +641,44 @@
                         
 
                         <!-- Main modal -->
-                        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div id="<?= $showBooks[$i]["title"] ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
                                     <!-- Modal header -->
-                                    <form class="space-y-4 edit-project" action="utilisateur.php" method="POST">
+                                    <form class="space-y-4 edit-project" action="booksAdmin.php" method="POST">
                                       <div>
-                                          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project name</label>
-                                          <input type="text" name="edit-name" id="edit-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" required />
+                                          <label for="edit-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Name</label>
+                                          <input type="text" name="edit-name" id="edit-name" value="<?= $showBooks[$i]["title"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
                                       </div>
                                       <div>
-                                          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project description</label>
-                                          <textarea type="text" name="edit-desc" id="edit-desc" placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required ></textarea>
+                                          <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
+                                          <input type="text" name="author-name" id="author" value="<?= $showBooks[$i]["author"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
                                       </div>
+                                      <div>
+                                          <label for="edit-desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Description</label>
+                                          <textarea type="text" name="edit-desc" id="edit-desc"  placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" ><?= $showBooks[$i]["summary"] ?></textarea>
+                                      </div>
+                                      <!-- edit category -->
                                       <div class="flex justify-between items-center">
                                          
                                   <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
                           <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="edit-cat">
-                           
+                           <option value="1">Marketing</option>
                           </select>
                                       </div>
-                                          <input type="text" name="projectId" class="hidden putId">
-                                      <input type="submit" value="Edit Project" name="editProject" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                      <!-- edit status -->
+                                      <div class="flex justify-between items-center">
+                                         
+                                  <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Status</label>
+                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="newStatus">
+                           <option value="available">available</option>
+                           <option value="borrowed">borrowed</option>
+                           <option value="reserved">reserved</option>
+                          </select>
+                                      </div>
+                                          <input type="text" name="bookId" class="hidden putId" value="<?= $showBooks[$i]["id"] ?>">
+                                      <input type="submit" value="Edit Book" name="editBook" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                   </form>
                                 </div>
                             </div>
@@ -683,6 +704,9 @@
                       </div>
                     </td>
                   </tr>
+                   <?php  }
+                  ?>
+                 
                   </tbody>
                 </table>
               </div>
