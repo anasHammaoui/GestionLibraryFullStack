@@ -6,6 +6,6 @@
       $db = new DataBase("localhost","library","root","");
       $db -> conn();
       $connect = $db -> setConn();
-      $users = new Users();
+      $users = new Users(); 
      }
 ?>

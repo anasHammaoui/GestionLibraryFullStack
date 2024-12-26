@@ -24,7 +24,7 @@ session_start();
        $checkEmail -> execute();
        $count = $checkEmail -> fetch(PDO::FETCH_ASSOC);
        if ($count){
-        if ($count["password"] === $this -> password){
+        if (password_verify($pass, $count["password"])){
            if ($count["role"] === "authenticated"){
             header("location: userDash.php");
             $_SESSION["userRole"] = "authenticated";
