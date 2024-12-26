@@ -1,5 +1,6 @@
 <?php
-include "../model/users.php";
+include "../controller/users.php";
+include "../model/database.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $_POST['username'] ?? '';
   $email = $_POST['email'] ?? '';
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="mt-4">
               <a
                 class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                href="./login.html">
+                href="loginPage.php">
                 Already have an account? Login
               </a>
             </p>
