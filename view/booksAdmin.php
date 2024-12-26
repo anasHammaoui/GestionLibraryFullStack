@@ -701,6 +701,10 @@ include "../controller/CrudBooks.php";
                                           <label for="edit-desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Description</label>
                                           <textarea type="text" name="edit-desc" id="edit-desc"  placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" ><?= $showBooks[$i]["summary"] ?></textarea>
                                       </div>
+                                      <div>
+                                          <label for="cover" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Cover</label>
+                                          <input type="text" name="cover-edit" id="cover" value="<?= $showBooks[$i]["cover_image"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
                                       <!-- edit category -->
                                       <div class="flex justify-between items-center">
                                          
@@ -725,10 +729,15 @@ include "../controller/CrudBooks.php";
                                 </div>
                             </div>
                         </div>
-
-                        <button
+                      <!-- delete book -->
+                        <form action="booksAdmin.php" method="POST">
+                          <input type="text" name="delete-book" class="hidden" value="<?= $showBooks[$i]["id"] ?>">
+                          <button
+                          type="submit"
+                          
                           class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                           aria-label="Delete"
+                          name="deleteBook"
                         >
                           <svg
                             class="w-5 h-5"
@@ -743,6 +752,7 @@ include "../controller/CrudBooks.php";
                             ></path>
                           </svg>
                         </button>
+                        </form>
                       </div>
                     </td>
                   </tr>
