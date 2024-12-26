@@ -19,12 +19,15 @@
         $passDb = $this -> pass;
         $this -> connect =  new PDO("mysql:host={$hostname};dbname={$dbNamePdo}",$dbUserName , $passDb );
          
-        } catch (exception $e){
-            echo $e;
+        } catch (PDOException $e){
+            echo $e->getMessage();
         }
     }
     public function setConn(){
         return $this -> connect;
     }
  }
+
+ 
+
 ?>

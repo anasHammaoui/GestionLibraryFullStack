@@ -1,5 +1,9 @@
+<?php
+  include "../controller/login.php"
+?>
+
 <!DOCTYPE html>
-<html :class="{'theme-dark': dark }" x-data="data()" lang="en">
+<html  x-data="data()" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +16,13 @@
    
   </head>
   <body>
+    <!-- show error message after form is submeted and it's not good -->
+  <?php
+   if ($users){ ?> 
+   <div class="bg-rose-500 py-2 text-center font-bold text-lg text-white"><?= $users->login($connect, $_POST["email"],$_POST["password"]); ?></div>
+ <?php }?>
+  
+
     <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div
         class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
@@ -32,7 +43,7 @@
             />
           </div>
           <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-            <form class="w-full">
+            <form class="w-full" action="<?php htmlspecialchars("login.php")?>" method="POST">
               <h1
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
               >
@@ -41,6 +52,8 @@
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Email</span>
                 <input
+                type="email"
+                name="email"
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input border p-2"
                   placeholder="contact@email.co"
                 />
@@ -51,6 +64,7 @@
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input border p-2"
                   placeholder="***************"
                   type="password"
+                  name="password"
                 />
               </label>
 
@@ -67,7 +81,7 @@
                 You don't have an account?
                 <a
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  href="signUp.html"
+                  href="signUphtml.php"
                 >
                   Create account
                 </a>
