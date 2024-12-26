@@ -548,15 +548,57 @@ include "../controller/CrudBooks.php";
             </ul>
           </div>
         </header>
+        <!-- add a book modal -->
+           <!-- Main modal -->
+           <div id="add-book" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
+                                    <!-- Modal header -->
+                                    <form class="space-y-4 add-project" action="booksAdmin.php" method="POST">
+                                      <div>
+                                          <label for="add-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Name</label>
+                                          <input type="text" name="add-name" id="add-name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
+                                      <div>
+                                          <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
+                                          <input type="text" name="add-author" id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
+                                      <div>
+                                          <label for="add-desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Description</label>
+                                          <textarea type="text" name="add-desc" id="add-desc"  placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" ></textarea>
+                                      </div>
+                                      <div>
+                                          <label for="cover" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Cover</label>
+                                          <input type="text" name="add-cover" id="cover" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
+                                      <!-- add category -->
+                                      <div class="flex justify-between items-center">
+                                         
+                                  <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
+                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="add-cat">
+                           <option value="1">Marketing</option>
+                          </select>
+                                      </div>
+                                      <input type="submit" value="add Book" name="addBook" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- main content -->
         <main class="h-full pb-16 overflow-y-auto">
           <div class="container grid px-6 mx-auto">
-            <h2
+           <div class="flex justify-between items-center">
+           <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
               Library Books
             </h2>
-
-            </a>
+  <div class="add-book">
+  <button data-modal-target="add-book" data-modal-toggle="add-book" class="px-3 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Add Book</button>
+  </div>
+           </div>
+           
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
