@@ -2,14 +2,12 @@
     include "../model/database.php";
     session_start();
     if (isset($_SESSION["userRole"])){
-        if ($_SESSION["userRole"] == "admin"){
-            echo "it's admin";
-        } else {
-            echo "Error in Sessions, you're not admin";
+        if ($_SESSION["userRole"] != "admin"){
             die();
-        }
+        } 
     } else {
-        echo "not set";
+        echo "You Have to Sign in to access this page:)";
+        die();
     }
     
 ?>
