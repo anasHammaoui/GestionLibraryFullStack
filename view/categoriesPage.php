@@ -1,8 +1,5 @@
 <?php
-include "../controller/CrudBooks.php";
-include "../controller/categoriesClass.php";
-$catClass = new Categories($connection);
-    $showCats = $catClass -> showCategories();
+include "../controller/categories.php";
 ?>
 
 <!DOCTYPE html>
@@ -62,14 +59,14 @@ $catClass = new Categories($connection);
                 <span class="ml-4">Dashboard</span>
               </a>
             </li>
+          </ul>
+          <ul>
+           
+           
             <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="booksAdmin.html"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="booksAdmin.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -87,9 +84,13 @@ $catClass = new Categories($connection);
               </a>
             </li>
             <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="categoriesPage.php"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="categoriesPage.php    "
               >
                 <svg
                   class="w-5 h-5"
@@ -393,7 +394,7 @@ $catClass = new Categories($connection);
       <div class="flex flex-col flex-1 w-full">
         <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
-            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+            class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >
             <!-- Mobile hamburger -->
             <button
@@ -414,33 +415,7 @@ $catClass = new Categories($connection);
                 ></path>
               </svg>
             </button>
-            <!-- Search input -->
-            <div class="flex justify-center flex-1 lg:mr-32">
-              <div
-                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
-              >
-                <div class="absolute inset-y-0 flex items-center pl-2">
-                  <svg
-                    class="w-4 h-4"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  class="w-full py-2 pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-grey-300 focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-                  type="text"
-                  placeholder="Search for books"
-                  aria-label="Search"
-                />
-              </div>
-            </div>
+       
             <ul class="flex items-center flex-shrink-0 space-x-6">
               <!-- Notifications menu -->
               <li class="relative">
@@ -570,41 +545,18 @@ $catClass = new Categories($connection);
         </header>
         <!-- add a book modal -->
            <!-- Main modal -->
-           <div id="add-book" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+           <div id="add-cat" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
                                     <!-- Modal header -->
-                                    <form class="space-y-4 add-project" action="booksAdmin.php" method="POST">
+                                    <form class="space-y-4 add-project" action="../controller/categories.php" method="POST">
                                       <div>
-                                          <label for="add-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Name</label>
-                                          <input type="text" name="add-name" id="add-name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                          <label for="add-category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Name</label>
+                                          <input type="text" name="add-category" id="add-category"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
                                       </div>
-                                      <div>
-                                          <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
-                                          <input type="text" name="add-author" id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
-                                      </div>
-                                      <div>
-                                          <label for="add-desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Description</label>
-                                          <textarea type="text" name="add-desc" id="add-desc"  placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" ></textarea>
-                                      </div>
-                                      <div>
-                                          <label for="cover" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Cover</label>
-                                          <input type="text" name="add-cover" id="cover" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
-                                      </div>
-                                      <!-- add category -->
-                                      <div class="flex justify-between items-center">
-                                         
-                                  <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
-                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="add-cat">
-                           <?php
-                            for ($i= 0; $i< count($showCats); $i++){ ?>
-
-                              <option value="<?= $showCats[$i]["id"] ?>"><?= $showCats[$i]["name"] ?></option>
-                          <?php  } ?>
-                          </select>
-                                      </div>
-                                      <input type="submit" value="add Book" name="addBook" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                     
+                                      <input type="submit" value="add Category" name="addCategory" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                   </form>
                                 </div>
                             </div>
@@ -616,178 +568,58 @@ $catClass = new Categories($connection);
            <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Library Books
+              Books Categories
             </h2>
-  <div class="add-book">
-  <button data-modal-target="add-book" data-modal-toggle="add-book" class="px-3 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Add Book</button>
+  <div class="add-cat">
+  <button data-modal-target="add-cat" data-modal-toggle="add-cat" class="px-3 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Add Category</button>
   </div>
            </div>
            
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-3">Book</th>
-                      <th class="px-4 py-3">Author</th>
-                      <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3">Created At</th>
-                      <th class="px-4 py-3">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-                  <!-- show books with php -->
-                  <?php
-                    for ($i = 0; $i < count($showBooks); $i++){ ?>
-                     <tr class="text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <!-- Avatar with inset shadow -->
-                        <div
-                          class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                        >
-                          <img
-                            class="object-cover w-full h-full rounded-full"
-                            src="<?= $showBooks[$i]["cover_image"] ?>"
-                            alt="<?= $showBooks[$i]["title"] ?>"
-                            loading="lazy"
-                          />
-                          <div
-                            class="absolute inset-0 rounded-full shadow-inner"
-                            aria-hidden="true"
-                          ></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold"><?= $showBooks[$i]["title"] ?></p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">
-                          <?= $showBooks[$i]["category_id"] ?>
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                    <?= $showBooks[$i]["author"] ?>
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                      <span
-                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                      >
-                      <?= $showBooks[$i]["status"] ?>
-                      </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                    <?= $showBooks[$i]["created_at"] ?>
-                    </td>
-                    <td class="px-4 py-3">
-                      <div class="flex items-center space-x-4 text-sm">
-                        <!-- edit book -->
-                         
-                        <!-- Modal toggle -->
-                       
-                        <button
-                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                          aria-label="Edit"
-                          data-modal-target="<?= $showBooks[$i]["title"] ?>" data-modal-toggle="<?= $showBooks[$i]["title"] ?>" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
-                        >
-                          <svg
-                            class="w-5 h-5"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                            ></path>
-                          </svg>
-                        </button>
-                        
 
-                        <!-- Main modal -->
-                        <div id="<?= $showBooks[$i]["title"] ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+          </div>
+          <!-- category page -->
+          <section class="categories grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- show categories with php -->
+                <?php
+                    for ($i = 0; $i < count($showCats); $i++){ ?>
+                        <div class="border rounded p-4 mx-auto">
+                                    <h3 class="cat-name font-semibold text-center" ><?= $showCats[$i]["name"] ?></h3>
+                                    <div class="mt-2">
+                                    <div class="flex gap-2"> 
+                                    <button aria-label="Edit"
+                                    data-modal-target="<?= $showCats[$i]["name"] ?>" data-modal-toggle="<?= $showCats[$i]["name"] ?>" class="edit-cat bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600" data-modal-target='edit-cat' data-modal-toggle='edit-cat' type='i'>Edit Categorie</button>
+                                     <!-- Main modal -->
+                        <div id="<?= $showCats[$i]["name"] ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
                                     <!-- Modal header -->
-                                    <form class="space-y-4 edit-project" action="booksAdmin.php" method="POST">
+                                    <form class="space-y-4 edit-project" action="../controller/categories.php" method="POST">
                                       <div>
-                                          <label for="edit-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Name</label>
-                                          <input type="text" name="edit-name" id="edit-name" value="<?= $showBooks[$i]["title"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                          <label for="edit-cat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Name</label>
+                                          <input type="text" name="edit-cat" id="edit-cat" value="<?= $showCats[$i]["name"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
                                       </div>
-                                      <div>
-                                          <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
-                                          <input type="text" name="author-name" id="author" value="<?= $showBooks[$i]["author"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
-                                      </div>
-                                      <div>
-                                          <label for="edit-desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Description</label>
-                                          <textarea type="text" name="edit-desc" id="edit-desc"  placeholder="Enter a description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" ><?= $showBooks[$i]["summary"] ?></textarea>
-                                      </div>
-                                      <div>
-                                          <label for="cover" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Book Cover</label>
-                                          <input type="text" name="cover-edit" id="cover" value="<?= $showBooks[$i]["cover_image"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
-                                      </div>
-                                      <!-- edit category -->
-                                      <div class="flex justify-between items-center">
-                                         
-                                  <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
-                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="edit-cat">
-                           <option value="1">Marketing</option>
-                          </select>
-                                      </div>
-                                      <!-- edit status -->
-                                      <div class="flex justify-between items-center">
-                                         
-                                  <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Status</label>
-                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="newStatus">
-                           <option value="available">available</option>
-                           <option value="borrowed">borrowed</option>
-                           <option value="reserved">reserved</option>
-                          </select>
-                                      </div>
-                                          <input type="text" name="bookId" class="hidden putId" value="<?= $showBooks[$i]["id"] ?>">
-                                      <input type="submit" value="Edit Book" name="editBook" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                          <input type="text" name="CatId" class="hidden putId" value="<?= $showCats[$i]["id"] ?>">
+                                      <input type="submit" value="Edit Category" name="editCat" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                   </form>
                                 </div>
                             </div>
                         </div>
-                      <!-- delete book -->
-                        <form action="booksAdmin.php" method="POST">
-                          <input type="text" name="delete-book" class="hidden" value="<?= $showBooks[$i]["id"] ?>">
-                          <button
-                          type="submit"
-                          
-                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                          aria-label="Delete"
-                          name="deleteBook"
-                        >
-                          <svg
-                            class="w-5 h-5"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
+                                    <!-- delete book -->
+                        <form action="../controller/categories.php" method="POST">
+                          <input type="text" name="delete-cat" class="hidden" value="<?=  $showCats[$i]["id"]?>">
+                          <button type="submit" name="deleteCat" class="bg-rose-500 text-white px-3 py-1 rounded hover:bg-rose-600">Delete Categorie</button>
+                         
                         </button>
                         </form>
-                      </div>
-                    </td>
-                  </tr>
-                   <?php  }
-                  ?>
-                 
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                    <?php } ?>
+                
+                
+          </section>
         </main>
       </div>
     </div>
