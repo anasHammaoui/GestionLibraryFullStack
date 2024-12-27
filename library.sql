@@ -8,7 +8,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'authenticated') DEFAULT 'authenticated',
+    role ENUM('admin', 'authenticated') DEFAULT '	',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -31,7 +31,12 @@ CREATE TABLE books (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
-
+INSERT INTO books(title,author,category_id,cover_image,summary)
+VALUES ("the king admin","moha",1,"https://placehold.co/400x600/000000/FFF","this is king bbooks");
+INSERT INTO books(title,author,category_id,cover_image,summary)
+VALUES ("cashvertising","yassin",1,"https://placehold.co/400x600/000000/FFF","marketing books");
+UPDATE books SET title = "the king admin", author = "anas" WHERE id = 1;
+SELECT * FROM books;
 -- Table des emprunts
 CREATE TABLE borrowings (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,4 +49,8 @@ CREATE TABLE borrowings (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
-
+INSERT INTO categories(name) VALUES ("design");
+SELECT * FROM users;
+DELETE FROM users WHERE id = 2;
+INSERT INTO users (name,email, PASSWORD) VALUES ("anas","anas@gmail.com","12345678");
+UPDATE users SET ROLE = "admin";

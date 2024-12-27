@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $database = new Database("localhost", "library", "root", "");
   $database->conn();
   $conn = $database->setConn();
-  $users = new Users();
+  $users = new Users($conn);
   $users->SignUp($username, $email, $password, $confirmPassword, $conn);
 }
 
