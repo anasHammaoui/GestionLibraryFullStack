@@ -1,5 +1,7 @@
 <?php
   include "../controller/admin.php";
+  // $users = $pdo->query("SELECT * FROM users ")->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html  x-data="data()" lang="en">
@@ -650,7 +652,7 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Pending contacts
+                    total books
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -728,11 +730,11 @@
                         <!-- edit book -->
                          
                         <!-- Modal toggle -->
-                       
+                       <!--edit-->
                         <button
                           class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                           aria-label="Edit"
-                          data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
+                          data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit"
                         >
                           <svg
                             class="w-5 h-5"
@@ -762,7 +764,7 @@
                               </select>
                                           </div>
                                           <input type="text" name="projectId" class="hidden putId">
-                                      <input type="submit" value="Edit Project" name="editProject" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                      <input type="submit" value="save" name="editProject" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                   </form>
                                 </div>
                             </div>
