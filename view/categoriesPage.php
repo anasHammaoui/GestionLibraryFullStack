@@ -1,60 +1,46 @@
 <?php
-  include "../controller/admin.php";
+include "../controller/categories.php";
 ?>
+
 <!DOCTYPE html>
-<html  x-data="data()" lang="en">
+<html :class="{ 'theme-dark': dark }" x-data="data()"  lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ebook | AdminPage</title>
+    <title>Books - Admin Dashboard</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- <link rel="stylesheet" href="css/tailwind.output.css" /> -->
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="js/init-alpine.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
-    />  
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-      defer
-    ></script>
-    <script src="./assets/js/charts-lines.js" defer></script>
-    <script src="./assets/js/charts-pie.js" defer></script>
   </head>
   <body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
-      :class="{ 'overflow-hidden': isSideMenuOpen }"
+      :class="{ 'overflow-hidden': isSideMenuOpen}"
     >
       <!-- Desktop sidebar -->
       <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block"
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            EBOOK
+            Ebook
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="index.html"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="adminDash.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -76,9 +62,6 @@
           </ul>
           <ul>
            
-          
-          
-           
            
             <li class="relative px-6 py-3">
               <a
@@ -97,13 +80,17 @@
                 >
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
-                <span class="ml-4">books</span>
+                <span class="ml-4">Books</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="categoriesPage.php"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="categoriesPage.php    "
               >
                 <svg
                   class="w-5 h-5"
@@ -120,12 +107,7 @@
                 <span class="ml-4">Categories</span>
               </a>
             </li>
-          
-                </ul>
-              </template>
-            </li>
           </ul>
-       
         </div>
       </aside>
       <!-- Mobile sidebar -->
@@ -157,16 +139,12 @@
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            EBOOK
+            Windmill
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="index.html"
               >
                 <svg
@@ -300,8 +278,12 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
                 href="tables.html"
               >
                 <svg
@@ -433,9 +415,8 @@
                 ></path>
               </svg>
             </button>
-          
+       
             <ul class="flex items-center flex-shrink-0 space-x-6">
-             
               <!-- Notifications menu -->
               <li class="relative">
                 <button
@@ -469,6 +450,7 @@
                     @click.away="closeNotificationsMenu"
                     @keydown.escape="closeNotificationsMenu"
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
+                    aria-label="submenu"
                   >
                     <li class="flex">
                       <a
@@ -533,8 +515,6 @@
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                     aria-label="submenu"
                   >
-                   
-                  
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
@@ -563,259 +543,83 @@
             </ul>
           </div>
         </header>
-        <main class="h-full overflow-y-auto">
-          <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Dashboard
-            </h2>
-          
-            <!-- Cards -->
-            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-              <!-- Card -->
-              <div
-                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <div
-                  class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p
-                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
-                  >
-                    Total user
-                  </p>
-                  <p
-                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-                  >
-                    0
-                  </p>
-                </div>
-              </div>
-              <!-- Card -->
-              <!-- <div
-                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <div
-                  class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fill-rule="evenodd"
-                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p
-                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
-                  >
-                  book borrowed             </p>
-                  <p
-                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-                  >0
-                  </p>
-                </div>
-              </div> -->
-              <!-- Card -->
-              <!-- <div
-                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <div
-                  class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p
-                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
-                  >
-                    New sales
-                  </p>
-                  <p
-                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-                  >
-                    0
-                  </p>
-                </div>
-              </div> -->
-              <!-- Card -->
-              <div
-                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <div
-                  class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fill-rule="evenodd"
-                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p
-                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
-                  >
-                    Pending contacts
-                  </p>
-                  <p
-                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-                  >
-                    0
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- users -->
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-              <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-3">User</th>
-                      <th class="px-4 py-3">Id</th>
-                      <th class="px-4 py-3">Role</th>
-                      <th class="px-4 py-3">Email</th>
-                      <th class="px-4 py-3">Registred at</th>
-                      <th class="px-4 py-3">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-                  
-                  <tr class="text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <!-- Avatar with inset shadow -->
-                        <div
-                          class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                        >
-                          <img
-                            class="object-cover w-full h-full rounded-full"
-                            src="img/profil.png"
-                            alt=""
-                            loading="lazy"
-                          />
-                          <div
-                            class="absolute inset-0 rounded-full shadow-inner"
-                            aria-hidden="true"
-                          ></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Ahmed</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">
-                            Admin
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                      1
-                    </td>
-                    <td class="px-4 py-3 text-xs">
-                      <span
-                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                      >
-                        Admin
-                      </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">
-                      contact@gmail.com
-                    </td>
-                    <td>
-                    6/10/2020
-                    </td>
-                    <td class="px-4 py-3">
-                      <div class="flex items-center space-x-4 text-sm">
-                        <!-- edit book -->
-                         
-                        <!-- Modal toggle -->
-                       
-                        <button
-                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                          aria-label="Edit"
-                          data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"
-                        >
-                          <svg
-                            class="w-5 h-5"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                            ></path>
-                          </svg>
-                        </button>
-                        
-
-                        <!-- Main modal -->
-                        <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <!-- add a book modal -->
+           <!-- Main modal -->
+           <div id="add-cat" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
-                                  <div class="text-center font-bold py-4">Edit Roles</div>
                                     <!-- Modal header -->
-                                    <form class="space-y-4 edit-project" action="utilisateur.php" method="POST">
-                                    <div class="flex column gap-4">
-                              <select id="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="role">
-                               <option value="">admin</option>
-                               <option value="">user</option>
-                              </select>
-                                          </div>
-                                          <input type="text" name="projectId" class="hidden putId">
-                                      <input type="submit" value="Edit Project" name="editProject" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <form class="space-y-4 add-project" action="../controller/categories.php" method="POST">
+                                      <div>
+                                          <label for="add-category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Name</label>
+                                          <input type="text" name="add-category" id="add-category"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
+                                     
+                                      <input type="submit" value="add Category" name="addCategory" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                   </form>
                                 </div>
                             </div>
                         </div>
+                        <!-- main content -->
+        <main class="h-full pb-16 overflow-y-auto">
+          <div class="container grid px-6 mx-auto">
+           <div class="flex justify-between items-center">
+           <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Books Categories
+            </h2>
+  <div class="add-cat">
+  <button data-modal-target="add-cat" data-modal-toggle="add-cat" class="px-3 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Add Category</button>
+  </div>
+           </div>
+           
 
-                        <button
-                          class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                          aria-label="Delete"
-                        >
-                          <svg
-                            class="w-5 h-5"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-            </div>
-
-         
           </div>
+          <!-- category page -->
+          <section class="categories grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- show categories with php -->
+                <?php
+                    for ($i = 0; $i < count($showCats); $i++){ ?>
+                        <div class="border rounded p-4 mx-auto">
+                                    <h3 class="cat-name font-semibold text-center" ><?= $showCats[$i]["name"] ?></h3>
+                                    <div class="mt-2">
+                                    <div class="flex gap-2"> 
+                                    <button aria-label="Edit"
+                                    data-modal-target="<?= $showCats[$i]["name"] ?>" data-modal-toggle="<?= $showCats[$i]["name"] ?>" class="edit-cat bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600" data-modal-target='edit-cat' data-modal-toggle='edit-cat' type='i'>Edit Categorie</button>
+                                     <!-- Main modal -->
+                        <div id="<?= $showCats[$i]["name"] ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4">
+                                    <!-- Modal header -->
+                                    <form class="space-y-4 edit-project" action="../controller/categories.php" method="POST">
+                                      <div>
+                                          <label for="edit-cat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category Name</label>
+                                          <input type="text" name="edit-cat" id="edit-cat" value="<?= $showCats[$i]["name"] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter a name" />
+                                      </div>
+                                          <input type="text" name="CatId" class="hidden putId" value="<?= $showCats[$i]["id"] ?>">
+                                      <input type="submit" value="Edit Category" name="editCat" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                                    <!-- delete book -->
+                        <form action="../controller/categories.php" method="POST">
+                          <input type="text" name="delete-cat" class="hidden" value="<?=  $showCats[$i]["id"]?>">
+                          <button type="submit" name="deleteCat" class="bg-rose-500 text-white px-3 py-1 rounded hover:bg-rose-600">Delete Categorie</button>
+                         
+                        </button>
+                        </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                    <?php } ?>
+                
+                
+          </section>
         </main>
       </div>
     </div>
