@@ -1,5 +1,8 @@
 <?php
 include "../controller/CrudBooks.php";
+include "../controller/categoriesClass.php";
+$catClass = new Categories($connection);
+    $showCats = $catClass -> showCategories();
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +62,6 @@ include "../controller/CrudBooks.php";
                 <span class="ml-4">Dashboard</span>
               </a>
             </li>
-          </ul>
-          <ul>
-           
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
@@ -84,6 +84,26 @@ include "../controller/CrudBooks.php";
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
                 <span class="ml-4">Books</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="categoriesPage.php"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+                <span class="ml-4">Categories</span>
               </a>
             </li>
           </ul>
@@ -577,7 +597,11 @@ include "../controller/CrudBooks.php";
                                          
                                   <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
                           <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="add-cat">
-                           <option value="1">Marketing</option>
+                           <?php
+                            for ($i= 0; $i< count($showCats); $i++){ ?>
+
+                              <option value="<?= $showCats[$i]["id"] ?>"><?= $showCats[$i]["name"] ?></option>
+                          <?php  } ?>
                           </select>
                                       </div>
                                       <input type="submit" value="add Book" name="addBook" class="w-full text-white bg-fuchsia-700 hover:bg-fuchsia-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
