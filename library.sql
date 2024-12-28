@@ -50,7 +50,7 @@ CREATE TABLE borrowings (
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
 INSERT INTO categories(name) VALUES ("design");
-SELECT * FROM users;
+SELECT * FROM categories;
 DELETE FROM users WHERE id = 2;
 INSERT INTO users (name,email, PASSWORD) VALUES ("anas","anas@gmail.com","12345678");
 UPDATE users SET ROLE = "admin";

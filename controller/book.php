@@ -21,9 +21,16 @@
             $add = $this-> connection -> prepare("INSERT INTO books (title,author,category_id,cover_image,summary) VALUES (?, ?, ?, ?, ?)");
             $add -> execute([$title,$author,(int)$category,$cover,$summary]);
         }
+        // delete book
         public function delete($id){
             $delete = $this -> connection -> prepare("DELETE FROM books where id = ?");
             $delete -> execute([(int)$id]);
+        }
+        // search for a book 
+        public function search($search) {
+            $srch = $this -> connection -> prepare("SELECT * FROM books WHERE title LIKE ? ");
+            $srch -> execute(["%{$search}%"]);
+            return json_encode($srch -> fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT);
         }
     }
 ?>

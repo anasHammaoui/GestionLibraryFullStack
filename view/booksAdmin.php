@@ -3,6 +3,7 @@ include "../controller/CrudBooks.php";
 include "../controller/categoriesClass.php";
 $catClass = new Categories($connection);
     $showCats = $catClass -> showCategories();
+    
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +70,7 @@ $catClass = new Categories($connection);
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="booksAdmin.html"
+                href="booksAdmin.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -434,7 +435,7 @@ $catClass = new Categories($connection);
                   </svg>
                 </div>
                 <input
-                  class="w-full py-2 pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-grey-300 focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                  class="w-full searchBox py-2 pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-grey-300 focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
                   type="text"
                   placeholder="Search for books"
                   aria-label="Search"
@@ -638,7 +639,7 @@ $catClass = new Categories($connection);
                     </tr>
                   </thead>
                   <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800 all-books"
                   >
                   <!-- show books with php -->
                   <?php
@@ -733,8 +734,12 @@ $catClass = new Categories($connection);
                                       <div class="flex justify-between items-center">
                                          
                                   <label for="selectCat" class="block  mr-7 font-medium text-gray-900 ">Category</label>
-                          <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="edit-cat">
-                           <option value="1">Marketing</option>
+                                  <select id="selectCat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 " name="edit-cat">
+                           <?php
+                            for ($c= 0; $c< count($showCats); $c++){ ?>
+
+                              <option value="<?= $showCats[$c]["id"] ?>"><?= $showCats[$c]["name"] ?></option>
+                          <?php  } ?>
                           </select>
                                       </div>
                                       <!-- edit status -->
@@ -791,6 +796,7 @@ $catClass = new Categories($connection);
         </main>
       </div>
     </div>
+    <script src="js/ajax.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
 </html>
