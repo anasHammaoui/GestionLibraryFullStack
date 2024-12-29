@@ -96,14 +96,15 @@ $catClass = new Categories($connection);
                         <?php
                             for ($j =0; $j < count($showBorrow); $j++){ ?>
                                 <div class="flex items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800" alt="Book cover" class="w-12 h-16 object-cover rounded">
+                               <?php for ($s = 0;  $s <count($showBooks); $s++){
+                                    if ($showBooks[$s]["id"] == $showBorrow[$j]["book_id"]){ ?>
+                            <img src="<?=  $showBooks[$s]["cover_image"]?>" alt="Book cover" class="w-12 h-16 object-cover rounded">
                             <div>
-                                <p class="font-medium text-gray-900"><?php
-                                    for ($s = 0;  $s <count($showBooks); $s++){
-                                        if ($showBooks[$s]["id"] == $showBorrow[$j]["book_id"]){
-                                            echo $showBooks[$s]["title"];
-                                        }
-                                    }
+                                <p class="font-medium text-gray-900">
+                                   
+                                            <?= $showBooks[$s]["title"] ?>;
+                                 <?php } 
+                                    } 
                                 ?></p>
                                 <p class="text-sm text-gray-500">Borrow date: <strong><?= $showBorrow[$j]["borrow_date"] ?></strong></p>
                                 <p class="text-sm text-gray-500">Due date: <strong><?= $showBorrow[$j]["due_date"] ?></strong></p>

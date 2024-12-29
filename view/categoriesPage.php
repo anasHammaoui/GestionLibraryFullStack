@@ -34,7 +34,7 @@ include "../controller/categories.php";
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            Ebook
+            EBOOK
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -68,18 +68,7 @@ include "../controller/categories.php";
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="booksAdmin.php"
               >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 300 300" xml:space="preserve"><path d="M197.748 247.487h-91.339c-13.101 0-23.76-10.658-23.76-23.76V112.282a5.177 5.177 0 0 1 10.355 0v111.445c0 7.391 6.014 13.404 13.404 13.404h91.339c5.1 0 9.247-4.148 9.247-9.247V115.391c0-5.099-4.148-9.248-9.247-9.248h-88.284c-14.786 0-26.816-12.029-26.816-26.815 0-14.787 12.03-26.816 26.816-26.816l86.1.003a5.178 5.178 0 1 1 0 10.355l-86.101-.003c-9.076 0-16.46 7.384-16.46 16.461 0 9.075 7.384 16.46 16.461 16.46h88.284c10.808 0 19.602 8.794 19.602 19.603v112.493c.002 10.81-8.792 19.603-19.601 19.603zM212.174 62.872h-.86a5.179 5.179 0 1 1 0-10.355h.86a5.177 5.177 0 0 1 0 10.355z"/><path d="M190.402 222.476h-80.803a5.177 5.177 0 0 1-5.178-5.177v-91.324a5.177 5.177 0 0 1 5.178-5.177h80.803a5.177 5.177 0 1 1 0 10.354h-75.625v80.969h70.447v-68.205a5.178 5.178 0 1 1 10.355 0V217.3a5.176 5.176 0 0 1-5.177 5.176z"/><path d="M168.818 153.571h-37.636a5.177 5.177 0 0 1 0-10.355h37.636a5.178 5.178 0 0 1 0 10.355zM168.818 176.815h-37.636a5.177 5.177 0 1 1 0-10.354h37.636a5.177 5.177 0 1 1 0 10.354zM168.818 200.059h-37.636a5.177 5.177 0 1 1 0-10.354h37.636a5.177 5.177 0 1 1 0 10.354zM190.59 84.506h-64.383a5.177 5.177 0 0 1 0-10.355h64.383a5.178 5.178 0 1 1 0 10.355zM110.459 84.506h-.86a5.177 5.177 0 1 1 0-10.355h.86a5.178 5.178 0 1 1 0 10.355z"/></svg>
                 <span class="ml-4">Books</span>
               </a>
             </li>
