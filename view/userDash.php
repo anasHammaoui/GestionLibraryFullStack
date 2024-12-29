@@ -15,7 +15,19 @@ $catClass = new Categories($connection);
             }, 3000);
         </script>
         ";
+    } 
+    if (isset($_POST["return"])){
+        $borrowClass -> returnBook($_POST["returnId"]);
+        $borrowMsg = "The book has been returned successfully";
+        echo "
+        <script>
+            setTimeout(()=>{
+            window.location.href = 'userDash.php';
+            }, 3000);
+        </script>
+        ";
     }
+    $showBorrow = $borrowClass -> showBorrowed($_SESSION["userId"]);
 ?>
 
 <!DOCTYPE html>
@@ -58,8 +70,9 @@ $catClass = new Categories($connection);
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="bg-green-500 text-white p-2 font-bold text-lg text-center"><?=  $borrowMsg ? $borrowMsg : "Good Morning"?></div>
+   
     <div class="flex h-screen">
+        
         <!-- Overlay for mobile -->
         <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden" onclick="toggleSidebar()"></div>
 
@@ -80,20 +93,32 @@ $catClass = new Categories($connection);
                 <div class="flex-1 overflow-y-auto p-4">
                     <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">My Books</h3>
                     <div class="space-y-4">
-                        <div class="flex items-center gap-3">
+                        <?php
+                            for ($j =0; $j < count($showBorrow); $j++){ ?>
+                                <div class="flex items-center gap-3">
                             <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800" alt="Book cover" class="w-12 h-16 object-cover rounded">
                             <div>
-                                <p class="font-medium text-gray-900">The Midnight Library</p>
-                                <p class="text-sm text-gray-500">Matt Haig</p>
+                                <p class="font-medium text-gray-900"><?php
+                                    for ($s = 0;  $s <count($showBooks); $s++){
+                                        if ($showBooks[$s]["id"] == $showBorrow[$j]["book_id"]){
+                                            echo $showBooks[$s]["title"];
+                                        }
+                                    }
+                                ?></p>
+                                <p class="text-sm text-gray-500">Borrow date: <strong><?= $showBorrow[$j]["borrow_date"] ?></strong></p>
+                                <p class="text-sm text-gray-500">Due date: <strong><?= $showBorrow[$j]["due_date"] ?></strong></p>
+                                <p class="text-sm text-gray-500">Reaturn date: <strong><?= $showBorrow[$j]["return_date"] ?></strong></p>
+                                <p class="text-sm text-gray-500">Status: <strong><?= $showBorrow[$j]["isAccepted"] ?></strong></p>
+                                <form action="userDash.php" method="POST">
+                                    <input type="text" value="<?= $showBorrow[$j]["id"] ?>" name="returnId" class="hidden">
+                                    <input type="submit" value="Return Book" name="return" class="bg-rose-500 text-white text-center py-1 px-2 cursor-pointer mt-2 rounded">
+
+                                </form>
                             </div>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800" alt="Book cover" class="w-12 h-16 object-cover rounded">
-                            <div>
-                                <p class="font-medium text-gray-900">Project Hail Mary</p>
-                                <p class="text-sm text-gray-500">Andy Weir</p>
-                            </div>
-                        </div>
+                         <?php   }
+                        ?>
+                       
                     </div>
                 </div>
 
@@ -113,6 +138,7 @@ $catClass = new Categories($connection);
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
+        <div class="bg-green-500 text-white p-2 font-bold text-lg text-center"><?=  $borrowMsg ? $borrowMsg : "Good Morning " . $_SESSION["userName"]?></div>
             <!-- Header -->
             <header class="bg-white shadow-sm">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
