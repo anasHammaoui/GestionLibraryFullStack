@@ -139,7 +139,7 @@ $catClass = new Categories($connection);
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
-        <div class="bg-green-500 text-white p-2 font-bold text-lg text-center"><?=  $borrowMsg ? $borrowMsg : "Good Morning " . $_SESSION["userName"]?></div>
+        <?="<div class='bg-purple-600 text-white p-2 font-bold text-lg text-center'>" . $borrowMsg ? $borrowMsg :"faild" . "</div>" ?>
             <!-- Header -->
             <header class="bg-white shadow-sm">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -167,7 +167,7 @@ $catClass = new Categories($connection);
             <!-- Scrollable Content -->
             <div class="flex-1 overflow-y-auto">
                 <!-- Hero Section -->
-                <div class="bg-indigo-700 text-white py-16">
+                <div class="bg-purple-600 text-white py-16">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="text-center">
                             <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl">

@@ -3,7 +3,7 @@ include "../controller/CrudBooks.php";
 include "../controller/categoriesClass.php";
 $catClass = new Categories($connection);
     $showCats = $catClass -> showCategories();
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -447,6 +447,7 @@ $catClass = new Categories($connection);
                 <input
                   class="w-full searchBox py-2 pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-grey-300 focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
                   type="text"
+                  name="search"
                   placeholder="Search for books"
                   aria-label="Search"
                 />
@@ -649,7 +650,7 @@ $catClass = new Categories($connection);
                     </tr>
                   </thead>
                   <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800 all-books"
+                    class="bg-white tbody divide-y dark:divide-gray-700 dark:bg-gray-800 all-books"
                   >
                   <!-- show books with php -->
                   <?php
@@ -864,6 +865,7 @@ document.addEventListener('click', (e) => {
     }
 });
     </script>
+    <script src="js/liveSearch.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
 </html>
