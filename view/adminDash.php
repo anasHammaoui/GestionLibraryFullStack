@@ -1,4 +1,5 @@
 <?php
+include "../controller/admin.php";
 include "../controller/crudUsers.php";
 ?>
 <!DOCTYPE html>

@@ -26,11 +26,6 @@
             $delete = $this -> connection -> prepare("DELETE FROM books where id = ?");
             $delete -> execute([(int)$id]);
         }
-        // search for a book 
-        public function search($search) {
-            $srch = $this -> connection -> prepare("SELECT * FROM books WHERE title LIKE ? ");
-            $srch -> execute(["%{$search}%"]);
-            return json_encode($srch -> fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT);
-        }
+      
     }
 ?>

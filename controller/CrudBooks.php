@@ -22,10 +22,5 @@
       $bookClass -> delete($_POST["delete-book"]);
       header("location: booksAdmin.php");
     }
-    // Search for a book
-    if (isset($_REQUEST["search"])){
-      $searchResult = $bookClass -> search($_REQUEST["search"]);
-      echo $searchResult;
-    }
 
 ?>
