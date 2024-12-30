@@ -22,5 +22,12 @@
             $delete = $this -> connection -> prepare("UPDATE categories set name = ? where id = ?");
             $delete -> execute([$catName, (int)$catId]);
         }
+    // show specific category 
+        public function showCat($id){
+            $show = $this -> connection -> prepare("SELECT name from categories where id = $id");
+             $show -> execute();
+             $result = $show-> fetch(PDO::FETCH_ASSOC);
+            return $result["name"];
+        }
     }
 ?>

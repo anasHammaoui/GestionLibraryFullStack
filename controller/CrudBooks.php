@@ -22,4 +22,5 @@
       $bookClass -> delete($_POST["delete-book"]);
       header("location: booksAdmin.php");
     }
+   
 ?>

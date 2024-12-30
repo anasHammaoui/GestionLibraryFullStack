@@ -60,7 +60,7 @@ class Users
         $this->db = $db;
         // start login
         $email = $this->email;
-        $checkEmail = $this->db->prepare("SELECT email, password, role,id FROM users WHERE email = :email");
+        $checkEmail = $this->db->prepare("SELECT email, password, role,id, name FROM users WHERE email = :email");
         $checkEmail->bindParam(":email", $email);
         $checkEmail->execute();
         $count = $checkEmail->fetch(PDO::FETCH_ASSOC);
@@ -70,12 +70,14 @@ class Users
                     header("location: userDash.php");
                     $_SESSION["userRole"] = "authenticated";
                     $_SESSION["userId"] = $count["id"];
+                    $_SESSION["userName"] = $count["name"];
                     $this->db = null;
                     exit();
                 } elseif ($count["role"] === "admin") {
                     header("location: adminDash.php");
                     $_SESSION["userRole"] = "admin";
                     $_SESSION["userId"] = $count["id"];
+                    $_SESSION["userName"] = $count["name"];
                     $this->db = null;
                     exit();
                 }
