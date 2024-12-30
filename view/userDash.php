@@ -28,6 +28,7 @@ $catClass = new Categories($connection);
         ";
     }
     $showBorrow = $borrowClass -> showBorrowed($_SESSION["userId"]);
+    
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,8 @@ $catClass = new Categories($connection);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ebook - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+    
+<style>
         /* Sidebar transitions */
 .sidebar-transition {
     transition: transform 0.3s ease-in-out;
@@ -154,7 +156,7 @@ $catClass = new Categories($connection);
                             <h1 class="text-2xl font-bold text-gray-900">Ebook</h1>
                         </div>
                         <div class="relative">
-                            <input type="text" placeholder="Search books..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            <input type="text" placeholder="Search books..." name="searchUser" class=" searchUser pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                             <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -182,7 +184,7 @@ $catClass = new Categories($connection);
 
                 <!-- Books Grid -->
                 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="grid booksUser grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <?php
                         for ($i =0; $i < count($showBooks);$i++){ ?>
 
@@ -296,6 +298,7 @@ $catClass = new Categories($connection);
                      <?php   }
                        ?>
                     </div>
+                    
                 </main>
 
                 <!-- Footer -->
@@ -309,6 +312,7 @@ $catClass = new Categories($connection);
             </div>
         </div>
     </div>
+    
     <script>
         function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
@@ -332,5 +336,6 @@ document.addEventListener('click', (e) => {
     }
 });
     </script>
+    <script src="js/liveSearchUser.js"></script>
 </body>
 </html>

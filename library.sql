@@ -49,8 +49,9 @@ CREATE TABLE borrowings (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
-DELETE FROM borrowings WHERE id = 1;
-INSERT INTO categories(name) VALUES ("design");
+DELETE FROM borrowings;
+	SELECT * FROM borrowings;
+INSERT INTO categories(name) VALUES	 ("design");
 SELECT * FROM books;
 DELETE FROM users WHERE id = 2;
 INSERT INTO users (name,email, PASSWORD) VALUES ("anas","anas@gmail.com","12345678");
