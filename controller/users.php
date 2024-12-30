@@ -109,6 +109,6 @@ class Users
         $delete -> execute([(int)$id]);
     }
     // public function statistiques($connect){
-    // $totalUsers = $connect->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    // $totalUsers = $connect->query("SELECT COUNT(*)  FROM users")->fetchColumn();
     // }
 }
