@@ -17,7 +17,7 @@ CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
-
+SELECT * FROM categories;
 -- Table des livres
 CREATE TABLE books (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +36,7 @@ VALUES ("the king admin","moha",1,"https://placehold.co/400x600/000000/FFF","thi
 INSERT INTO books(title,author,category_id,cover_image,summary)
 VALUES ("cashvertising","yassin",1,"https://placehold.co/400x600/000000/FFF","marketing books");
 UPDATE books SET title = "the king admin", author = "anas" WHERE id = 1;
-SELECT * FROM books;
+SELECT * FROM borrowings;
 -- Table des emprunts
 CREATE TABLE borrowings (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,8 +49,9 @@ CREATE TABLE borrowings (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
+DELETE FROM borrowings WHERE id = 1;
 INSERT INTO categories(name) VALUES ("design");
-SELECT * FROM users;
+SELECT * FROM books;
 DELETE FROM users WHERE id = 2;
 INSERT INTO users (name,email, PASSWORD) VALUES ("anas","anas@gmail.com","12345678");
 UPDATE users SET ROLE = "admin";

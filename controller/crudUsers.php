@@ -1,6 +1,5 @@
 <?php
 include "../controller/users.php";
-include "../controller/admin.php";
 $connect = new DataBase("localhost", "library", "root", "");
 $connect->conn();
 $connection = $connect->setConn();

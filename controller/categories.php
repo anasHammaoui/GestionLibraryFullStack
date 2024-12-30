@@ -25,4 +25,5 @@
         header("location: ../view/categoriesPage.php");
         exit();
     }
+    
 ?>
