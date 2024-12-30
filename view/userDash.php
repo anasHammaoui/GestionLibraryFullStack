@@ -6,7 +6,7 @@ $catClass = new Categories($connection);
     $borrowClass = new Borrow($connection);
     $borrowMsg = null;
     if (isset($_POST["borrow"])) {
-        $borrowClass -> borrow($_POST["user-id"],$_POST["book-id"],$_POST["date-borrow"],$_POST["date-due"],$_POST["date-return"]);
+        $borrowClass -> borrow($_POST["user-id"],$_POST["book-id"],$_POST["date-borrow"],$_POST["date-due"]);
         $borrowMsg = "Borrow request is sent successfully";
         echo "
         <script>
@@ -111,11 +111,16 @@ $catClass = new Categories($connection);
                                 <p class="text-sm text-gray-500">Borrow date: <strong><?= $showBorrow[$j]["borrow_date"] ?></strong></p>
                                 <p class="text-sm text-gray-500">Due date: <strong><?= $showBorrow[$j]["due_date"] ?></strong></p>
                                 <p class="text-sm text-gray-500">Reaturn date: <strong><?= $showBorrow[$j]["return_date"] ?></strong></p>
-                                <p class="text-sm text-gray-500">Status: <strong><?= $showBorrow[$j]["isAccepted"] ?></strong></p>
                                 <form action="userDash.php" method="POST">
                                     <input type="text" value="<?= $showBorrow[$j]["id"] ?>" name="returnId" class="hidden">
-                                    <input type="submit" value="Return Book" name="return" class="bg-rose-500 text-white text-center py-1 px-2 cursor-pointer mt-2 rounded">
-
+                                    <?php
+                                        if ($showBorrow[$j]["return_date"] != NULL){
+                                    
+                                            echo "<input type='submit' value='Returned'  class='bg-gray-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 cursor-no-drop'>";
+                                        } else {
+                                            echo "<input type='submit' value='Return Book' name='return' class='bg-rose-500 text-white text-center py-1 px-2 cursor-pointer mt-2 rounded '>";
+                                        }
+                                    ?>
                                 </form>
                             </div>
                         </div>
@@ -257,15 +262,7 @@ $catClass = new Categories($connection);
                                           class="mt-1 border p-2 w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
                                       >
                                   </div>
-                                  <!-- return date -->
-                                  <div>
-                                      <label class="block text-sm font-medium text-gray-700">Return date</label>
-                                      <input 
-                                          type="date" 
-                                          name="date-return" 
-                                          class="mt-1 border p-2 w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
-                                      >
-                                  </div>
+                                
 
                            
 
