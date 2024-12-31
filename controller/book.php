@@ -33,6 +33,12 @@
             $result = $search -> fetchAll(PDO::FETCH_ASSOC);
             return json_encode($result);
         }   
-      
+        public function statistique()
+        {
+            $countB  = $this->connection->prepare("SELECT count(*) as count_books from books");
+            $countB->execute();
+            $count = $countB->fetchAll(PDO::FETCH_ASSOC);
+            return $count;
+        }
     }
 ?>

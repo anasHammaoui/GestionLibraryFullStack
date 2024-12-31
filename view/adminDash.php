@@ -1,6 +1,8 @@
 <?php
-include "../controller/admin.php";
-include "../controller/crudUsers.php";
+require_once "../controller/admin.php";
+require_once "../controller/crudUsers.php";
+require_once "../controller/CrudBooks.php";
+
 ?>
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
@@ -508,11 +510,11 @@ include "../controller/crudUsers.php";
                 <p
                   class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                   Total user
-                  <!-- <?= $_SESSION['$totalUsers'] ?> -->
+
                 </p>
                 <p
                   class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  0
+                  <?= $showUserStats[0]["count_users"]?>
                 </p>
               </div>
             </div>
@@ -587,7 +589,7 @@ include "../controller/crudUsers.php";
                 </p>
                 <p
                   class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                  0
+                  <?= $showBooksStats[0]["count_books"] ?>
                 </p>
               </div>
             </div>

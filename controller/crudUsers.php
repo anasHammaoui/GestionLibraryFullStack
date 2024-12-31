@@ -16,4 +16,8 @@ if (isset($_GET["deleteUsers"])) {
     $usersClass->delete($_GET["delete-users"]);
     header("location: adminDash.php");
 }
+// show user stats
+$showUserStats = $usersClass->statistiques();
+
+
 // 

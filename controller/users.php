@@ -88,10 +88,12 @@ class Users
             echo "invalid email";
         }
     }
-    public  function __construct($db) {
+    public  function __construct($db)
+    {
         $this->connection = $db;
     }
-    public function showUsers() {
+    public function showUsers()
+    {
         $showUsers = $this->connection->prepare("SELECT * from users");
         $showUsers->execute();
         $showAsArr = $showUsers->fetchAll();
@@ -102,15 +104,21 @@ class Users
     //     $this->connection = $db;
     // }
 
-    public function edit($id, $role){
-        $edit = $this -> connection -> prepare("UPDATE users SET  role = ? WHERE id = ?");
-        $edit -> execute([$role,(int)$id ]);
+    public function edit($id, $role)
+    {
+        $edit = $this->connection->prepare("UPDATE users SET  role = ? WHERE id = ?");
+        $edit->execute([$role, (int)$id]);
     }
-    public function delete($id){
-        $delete = $this -> connection -> prepare("DELETE FROM users where id = ?");
-        $delete -> execute([(int)$id]);
+    public function delete($id)
+    {
+        $delete = $this->connection->prepare("DELETE FROM users where id = ?");
+        $delete->execute([(int)$id]);
     }
-    // public function statistiques($connect){
-    // $totalUsers = $connect->query("SELECT COUNT(*)  FROM users")->fetchColumn();
-    // }
+    public function statistiques()
+    {
+        $countUs  = $this->connection->prepare("SELECT count(*) as count_users from users");
+        $countUs->execute();
+        $count = $countUs->fetchAll(PDO::FETCH_ASSOC);
+        return $count;
+    }
 }
