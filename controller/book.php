@@ -23,7 +23,7 @@
         }
         // delete book
         public function delete($id){
-            $delete = $this -> connection -> prepare("DELETE FROM books where id = ?");
+            $delete = $this -> connection -> prepare("DELETE FROM books where id = ?;");
             $delete -> execute([(int)$id]);
         }
         // search book
