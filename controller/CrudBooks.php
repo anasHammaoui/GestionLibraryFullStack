@@ -1,6 +1,6 @@
 <?php
-      include "../controller/admin.php";
-      include "../controller/book.php";
+      require_once "../controller/admin.php";
+      require_once "../controller/book.php";
     $connect = new DataBase("localhost","library","root","");
     $connect -> conn();
     $connection = $connect ->setConn();
@@ -22,5 +22,6 @@
       $bookClass -> delete($_POST["delete-book"]);
       header("location: booksAdmin.php");
     }
-   
+    $showBooksStats = $bookClass->statistique();
+
 ?>
