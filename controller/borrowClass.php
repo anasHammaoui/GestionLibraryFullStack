@@ -52,10 +52,13 @@
             if ($getCheck["status"] == "available"){
                 $getFirstReserved = $this ->connection -> prepare("UPDATE borrowings SET book_status  = 'Borrowed' WHERE book_status = 'Reserved' AND book_id = ? LIMIT 1");
                 $getFirstReserved -> execute([$bkId]);
-                // update book status
-                $updateBook = $this -> connection -> prepare("UPDATE books SET status = 'borrowed' where id = ?" );
-            $updateBook -> execute([$bkId]);
-            echo $getCheck["status"];
+                $isExits = $getFirstReserved -> rowCount();
+                // update book status if the reserved book get borrowed
+                if ($isExits){
+                    $updateBook = $this -> connection -> prepare("UPDATE books SET status = 'borrowed' where id = ?" );
+                $updateBook -> execute([$bkId]);
+                }
+            // var_dump($isExits);
         }
         }
     }
