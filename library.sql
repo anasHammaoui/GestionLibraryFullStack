@@ -49,10 +49,14 @@ CREATE TABLE borrowings (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
+ALTER TABLE borrowings
+DROP COLUMN book_status;
+ALTER TABLE borrowings
+ADD COLUMN book_status ENUM('Reserved', 'Borrowed', 'Returned') DEFAULT NULL;
 DELETE FROM borrowings;
-	SELECT * FROM borrowings;
+SELECT * FROM borrowings;
 INSERT INTO categories(name) VALUES	 ("design");
 SELECT * FROM books;
 DELETE FROM users WHERE id = 2;
 INSERT INTO users (name,email, PASSWORD) VALUES ("anas","anas@gmail.com","12345678");
-UPDATE users SET ROLE = "admin";
+UPDATE books SET status = "available";

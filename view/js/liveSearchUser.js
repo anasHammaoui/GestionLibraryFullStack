@@ -1,9 +1,9 @@
-console.log("hhelo");
 let searchBox = document.querySelector(".searchUser");
 console.log(searchBox);
 let searchRes;
 const original = document.querySelector(".booksUser").innerHTML;
 let tableBooks = document.querySelector(".booksUser");
+
 searchBox.addEventListener("keyup",()=>{
     let httpXml = new XMLHttpRequest();
     httpXml.onreadystatechange = function (){
@@ -30,7 +30,12 @@ searchBox.addEventListener("keyup",()=>{
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                                     </svg>
-                                    Borrow Now
+                                    <?php
+                                    if ($showBooks[${i}]["status"] != "borrowed"){ 
+                                        echo "Borrow Now";
+                                         } else {
+                                            echo "Reserve Now";
+                                         }?>  
                                 </button>
                     
                       </div>
@@ -98,7 +103,7 @@ searchBox.addEventListener("keyup",()=>{
                                   <div class="flex justify-end gap-3 mt-6">
                                       <button 
                                           type="button"
-                                          onclick="toggleModal('${s.cover_image}')"
+                                          onclick="toggleModal(${s.title})"
                                           class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
                                       >
                                           Cancel
@@ -114,7 +119,58 @@ searchBox.addEventListener("keyup",()=>{
                               </form>
 
                                    <?php } else {
-                                    echo "the book is already borrowed";
+                                      <form action="userDash.php" method="POST" class="space-y-4">
+                                  <!-- user Id -->
+                                  <div>
+                                      <input 
+                                          type="text" 
+                                          name="user-id" 
+                                          value="<?= $_SESSION["userId"] ?>" 
+                                          class="mt-1 hidden w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                      >
+                                  </div>
+
+                                  <!-- book id -->
+                                  <div>
+                                      <input 
+                                          type="text" 
+                                          name="book-id" 
+                                          value="<?= $showBooks[${i}]['id'] ?>" 
+                                          class="mt-1 w-full hidden rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                      >
+                                  </div>
+                                  <!-- due date -->
+                                  <div>
+                                      <label class="block text-sm font-medium text-gray-700">Due date</label>
+                                      <input 
+                                          type="date" 
+                                          name="date-due" 
+                                          class="mt-1 border p-2 w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                        
+                                      >
+                                  </div>
+                                
+
+                           
+
+                                  <!-- Actions -->
+                                  <div class="flex justify-end gap-3 mt-6">
+                                      <button 
+                                          type="button"
+                                          onclick="toggleModal('<?= $showBooks[${i}]['title'] ?>')"
+                                          class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                                      >
+                                          Cancel
+                                      </button>
+                                      <button 
+                                          type="submit"
+                                          name="reserve"
+                                          class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700"
+                                      >
+                                          Reserve Book
+                                      </button>
+                                  </div>
+                              </form>
                                    }
                                 ?>
                           </div>
