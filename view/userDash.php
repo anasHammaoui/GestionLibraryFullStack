@@ -1,45 +1,7 @@
 <?php
-include "../controller/user.php";
-include "../controller/categoriesClass.php";
-include "../controller/borrowClass.php";
-$catClass = new Categories($connection);
-    $borrowClass = new Borrow($connection);
-    $borrowMsg = null;
-    if (isset($_POST["borrow"])) {
-        $borrowClass -> borrow($_POST["user-id"],$_POST["book-id"],$_POST["date-borrow"],$_POST["date-due"]);
-        $borrowMsg = "Borrow request is sent successfully";
-        echo "
-        <script>
-            setTimeout(()=>{
-            window.location.href = 'userDash.php';
-            }, 3000);
-        </script>
-        ";
-    } 
-    if (isset($_POST["return"])){
-        $borrowClass -> returnBook($_POST["returnId"]);
-        $borrowMsg = "The book has been returned successfully";
-        echo "
-        <script>
-            setTimeout(()=>{
-            window.location.href = 'userDash.php';
-            }, 3000);
-        </script>
-        ";
-    }
-    if (isset($_POST["reserve"])){
-        $borrowClass -> reserveBook($_POST["user-id"],$_POST["book-id"],$_POST["date-due"]);
-        $borrowMsg = "The book has been reserved successfully";
-        echo "
-        <script>
-            setTimeout(()=>{
-            window.location.href = 'userDash.php';
-            }, 3000);
-        </script>
-        ";
-    }
-    $showBorrow = $borrowClass -> showBorrowed($_SESSION["userId"]);
+    include_once "../controller/userDash.php"
 
+    
 ?>
 
 <!DOCTYPE html>
