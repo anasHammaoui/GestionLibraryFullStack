@@ -29,7 +29,7 @@ $catClass = new Categories($connection);
     }
     if (isset($_POST["reserve"])){
         $borrowClass -> reserveBook($_POST["user-id"],$_POST["book-id"],$_POST["date-due"]);
-        $borrowMsg = "The book has been returned successfully";
+        $borrowMsg = "The book has been reserved successfully";
         echo "
         <script>
             setTimeout(()=>{
@@ -110,6 +110,8 @@ $catClass = new Categories($connection);
                             for ($j =0; $j < count($showBorrow); $j++){ ?>
                                 <div class="flex items-center gap-3">
                                <?php for ($s = 0;  $s <count($showBooks); $s++){
+                            $borrowtoReserved = $borrowClass -> borrowToReserved($showBooks[$s]["id"]);
+
                                     if ($showBooks[$s]["id"] == $showBorrow[$j]["book_id"]){ ?>
                             <img src="<?=  $showBooks[$s]["cover_image"]?>" alt="Book cover" class="w-12 h-16 object-cover rounded">
                             <div>
@@ -125,11 +127,14 @@ $catClass = new Categories($connection);
                                 <form action="userDash.php" method="POST">
                                     <input type="text" value="<?= $showBorrow[$j]["id"] ?>" name="returnId" class="hidden">
                                     <?php
-                                        if ($showBorrow[$j]["return_date"] != NULL){
+                                        if ($showBorrow[$j]["return_date"] != NULL && $showBorrow[$j]["book_status"] == "Returned"){
                                     
-                                            echo "<input type='submit' value='Returned'  class='bg-gray-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 cursor-no-dropwxwwwx<cxw<'>";
-                                        } else {
+                                            echo "<input type='submit' value='Returned'  class='bg-gray-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 cursor-no-drop '>";
+                                        } elseif ($showBorrow[$j]["book_status"] == "Borrowed"){
                                             echo "<input type='submit' value='Return Book' name='return' class='bg-rose-500 text-white text-center py-1 px-2 cursor-pointer mt-2 rounded '>";
+                                        }
+                                        if ($showBorrow[$j]["book_status"] == "Reserved"){
+                                            echo "<input type='submit' value='Reserved'  class='bg-green-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 '>";
                                         }
                                     ?>
                                 </form>
