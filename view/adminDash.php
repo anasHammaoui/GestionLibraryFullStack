@@ -732,6 +732,22 @@ require_once "../controller/CrudBooks.php";
 
 
         </div>
+        <!-- <table>
+    <thead>
+        <tr>
+            <th>Nombre de livres empruntés</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($borrowedBooks as $row): ?>
+            <tr>
+                <td><?= htmlspecialchars($row['name']) ?></td>
+                <td><?= $row['borrowed_count'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table> -->
+
       </main>
     </div>
   </div>

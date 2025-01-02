@@ -1,6 +1,7 @@
 <?php
       require_once "../controller/admin.php";
       require_once "../controller/book.php";
+      require_once "../controller/borrowClass.php";
     $connect = new DataBase("localhost","library","root","");
     $connect -> conn();
     $connection = $connect ->setConn();
@@ -23,5 +24,7 @@
       header("location: booksAdmin.php");
     }
     $showBooksStats = $bookClass->statistique();
-
+    $BorrowClass = new Borrow($connection);
+    $showBorrow=$BorrowClass->stat();
+    
 ?>
