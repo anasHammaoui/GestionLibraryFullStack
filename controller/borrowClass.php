@@ -59,7 +59,19 @@
                 $updateBook -> execute([$bkId]);
                 }
             // var_dump($isExits);
+            }
         }
-        }
+        public function stat(){
+        $countBorrow  = $this->connection->prepare("SELECT  count(distinct book_id) as count_Borrow from borrowings");
+        $countBorrow->execute();
+        $count = $countBorrow->fetchAll(PDO::FETCH_ASSOC);
+        return $count;
+    }
+    public function borrowedBy($bookId) {
+        $countBorrow  = $this->connection->prepare("SELECT count(*) as count_Borrow from borrowings WHERE book_id = ?");
+        $countBorrow->execute([$bookId]);
+        $count = $countBorrow->fetch(PDO::FETCH_ASSOC);
+        return $count["count_Borrow"];
+    }
     }
 ?>
