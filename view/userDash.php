@@ -1,7 +1,7 @@
 <?php
-include "../controller/user.php";
-include "../controller/categoriesClass.php";
-include "../controller/borrowClass.php";
+require_once "../controller/user.php";
+require_once "../controller/categoriesClass.php";
+require_once "../controller/borrowClass.php";
 $catClass = new Categories($connection);
     $borrowClass = new Borrow($connection);
     $borrowMsg = null;
