@@ -1,33 +1,5 @@
 <?php
-require_once "../controller/user.php";
-require_once "../controller/categoriesClass.php";
-require_once "../controller/borrowClass.php";
-$catClass = new Categories($connection);
-    $borrowClass = new Borrow($connection);
-    $borrowMsg = null;
-    if (isset($_POST["borrow"])) {
-        $borrowClass -> borrow($_POST["user-id"],$_POST["book-id"],$_POST["date-borrow"],$_POST["date-due"]);
-        $borrowMsg = "Borrow request is sent successfully";
-        echo "
-        <script>
-            setTimeout(()=>{
-            window.location.href = 'userDash.php';
-            }, 3000);
-        </script>
-        ";
-    } 
-    if (isset($_POST["return"])){
-        $borrowClass -> returnBook($_POST["returnId"]);
-        $borrowMsg = "The book has been returned successfully";
-        echo "
-        <script>
-            setTimeout(()=>{
-            window.location.href = 'userDash.php';
-            }, 3000);
-        </script>
-        ";
-    }
-    $showBorrow = $borrowClass -> showBorrowed($_SESSION["userId"]);
+    include_once "../controller/userDash.php"
     
 ?>
 
@@ -99,6 +71,8 @@ $catClass = new Categories($connection);
                             for ($j =0; $j < count($showBorrow); $j++){ ?>
                                 <div class="flex items-center gap-3">
                                <?php for ($s = 0;  $s <count($showBooks); $s++){
+                            $borrowtoReserved = $borrowClass -> borrowToReserved($showBooks[$s]["id"]);
+
                                     if ($showBooks[$s]["id"] == $showBorrow[$j]["book_id"]){ ?>
                             <img src="<?=  $showBooks[$s]["cover_image"]?>" alt="Book cover" class="w-12 h-16 object-cover rounded">
                             <div>
@@ -114,11 +88,14 @@ $catClass = new Categories($connection);
                                 <form action="userDash.php" method="POST">
                                     <input type="text" value="<?= $showBorrow[$j]["id"] ?>" name="returnId" class="hidden">
                                     <?php
-                                        if ($showBorrow[$j]["return_date"] != NULL){
+                                        if ($showBorrow[$j]["return_date"] != NULL && $showBorrow[$j]["book_status"] == "Returned"){
                                     
-                                            echo "<input type='submit' value='Returned'  class='bg-gray-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 cursor-no-drop'>";
-                                        } else {
+                                            echo "<input type='submit' value='Returned'  class='bg-gray-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 cursor-no-drop '>";
+                                        } elseif ($showBorrow[$j]["book_status"] == "Borrowed"){
                                             echo "<input type='submit' value='Return Book' name='return' class='bg-rose-500 text-white text-center py-1 px-2 cursor-pointer mt-2 rounded '>";
+                                        }
+                                        if ($showBorrow[$j]["book_status"] == "Reserved"){
+                                            echo "<input type='submit' value='Reserved'  class='bg-green-400 text-white text-center py-1 px-2  mt-2 rounded disabled:opacity-75 '>";
                                         }
                                     ?>
                                 </form>
@@ -210,7 +187,12 @@ $catClass = new Categories($connection);
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                                     </svg>
-                                    Borrow Now
+                                   <?php
+                                    if ($showBooks[$i]["status"] != "borrowed"){ 
+                                        echo "Borrow Now";
+                                         } else {
+                                            echo "Reserve Now";
+                                         }?>  
                                 </button>
                     
                       </div>
@@ -223,6 +205,7 @@ $catClass = new Categories($connection);
                           <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6 relative">
                           <?php
                                     if ($showBooks[$i]["status"] != "borrowed"){ ?>
+                                    <!-- borrow book -->
                                 <form action="userDash.php" method="POST" class="space-y-4">
                                   <!-- user Id -->
                                   <div>
@@ -284,10 +267,61 @@ $catClass = new Categories($connection);
                                       </button>
                                   </div>
                               </form>
+                                        <!-- reserve book -->
+                                   <?php } else { ?>
+                                    <form action="userDash.php" method="POST" class="space-y-4">
+                                  <!-- user Id -->
+                                  <div>
+                                      <input 
+                                          type="text" 
+                                          name="user-id" 
+                                          value="<?= $_SESSION["userId"] ?>" 
+                                          class="mt-1 hidden w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                      >
+                                  </div>
 
-                                   <?php } else {
-                                    echo "the book is already borrowed";
-                                   }
+                                  <!-- book id -->
+                                  <div>
+                                      <input 
+                                          type="text" 
+                                          name="book-id" 
+                                          value="<?= $showBooks[$i]['id'] ?>" 
+                                          class="mt-1 w-full hidden rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                      >
+                                  </div>
+                                  <!-- due date -->
+                                  <div>
+                                      <label class="block text-sm font-medium text-gray-700">Due date</label>
+                                      <input 
+                                          type="date" 
+                                          name="date-due" 
+                                          class="mt-1 border p-2 w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-500"
+                                        
+                                      >
+                                  </div>
+                                
+
+                           
+
+                                  <!-- Actions -->
+                                  <div class="flex justify-end gap-3 mt-6">
+                                      <button 
+                                          type="button"
+                                          onclick="toggleModal('<?= $showBooks[$i]['title'] ?>')"
+                                          class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                                      >
+                                          Cancel
+                                      </button>
+                                      <button 
+                                          type="submit"
+                                          name="reserve"
+                                          class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700"
+                                      >
+                                          Reserve Book
+                                      </button>
+                                  </div>
+                              </form>
+                                <?php   }
                                 ?>
                           </div>
                         </div>
